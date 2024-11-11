@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :prices, only: [:index]
+      get "prices/max_daily_gap" => "prices#max_daily_gap"
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
