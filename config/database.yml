@@ -6,3 +6,7 @@ default: &default
 development:
   <<: *default
   database: evs_development
+
+test:
+  <<: *default
+  database: evs_test
