@@ -1,9 +1,14 @@
 class Api::V1::PricesController < ApplicationController
-  before_action :validate_date_param, only: [:index]
+  before_action :validate_date_param, only: [:index, :max_daily_gap]
 
   def index
     date = Date.parse(params[:date])
     @prices = Price.where(recorded_at: date.all_day).ordered_by_recorded_at
+  end
+
+  def max_daily_gap
+    date = Date.parse(params[:date])
+    @max_daily_gap = Prices::MaxDailyGapCalculatorService.new(date).execute
   end
 
   private
